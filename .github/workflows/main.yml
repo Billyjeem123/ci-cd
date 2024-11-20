@@ -6,7 +6,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' # Adjust to your branch
+    if: github.ref == 'refs/heads/master' # Adjust to your branch
     steps:
       - name: Start Deployment
         run: echo "🚀 Starting deployment process..."
