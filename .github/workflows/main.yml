@@ -26,9 +26,9 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 51.77.72.43
-          username: sendtrul
+          username: cicd@v1.sendtruly.com
           password: 1mZs88j@YI(h5Y
-          port: 22 # Added port configuration
+          port: 21 # Added port configuration
           script: |
             echo "📂 Navigating to project directory..."
             cd /home/sendtrul/v1.sendtruly.com
