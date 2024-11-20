@@ -28,9 +28,10 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }} # Added port configuration
           script: |
             echo "📂 Navigating to project directory..."
-            cd /path/to/your/project
+            cd /home/sendtrul/v1.sendtruly.com
             echo "⬇️ Pulling latest changes..."
             git pull origin main
             echo "📦 Installing dependencies..."
