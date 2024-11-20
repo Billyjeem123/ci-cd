@@ -1,4 +1,3 @@
-
 name: Deploy
 
 on:
@@ -30,9 +29,9 @@ jobs:
       - name: Deploy to production via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
-          server: 51.77.72.43
-          username: cicd@v1.sendtruly.com
-          password: 1mZs88j@YI(h5Y
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps # Use 'ftp' for plain FTP
           local-dir: ./ # Directory to upload
           server-dir: /home/sendtrul/v1.sendtruly.com # Destination directory
