@@ -1,24 +1,41 @@
+
 name: Deploy
 
-on: [push]
+on:
+  push:
+    branches:
+      - main # Ensure this matches your branch name
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' # Adjust to your branch
+    if: github.ref == 'refs/heads/main'
+
     steps:
       - name: Start Deployment
         run: echo "🚀 Starting deployment process..."
 
       - uses: actions/checkout@v3
 
+      - name: Verify Connection Details
+        run: |
+          echo "✅ Checking deployment configuration..."
+          echo "Branch: ${{ github.ref }}"
+          if [ -z "${{ secrets.FTP_SERVER }}" ]; then
+            echo "❌ Error: FTP_SERVER is not set"
+            exit 1
+          fi
+
       - name: Deploy to production via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
-          server:  51.77.72.43
+          server: 51.77.72.43
           username: cicd@v1.sendtruly.com
           password: 1mZs88j@YI(h5Y
-          protocol: ftps # Change to `ftp` if you want plain FTP
-          local-dir: ./ # Directory to upload (default: repository root)
-          server-dir: /home/sendtrul/v1.sendtruly.com # Destination directory on server
+          protocol: ftps # Use 'ftp' for plain FTP
+          local-dir: ./ # Directory to upload
+          server-dir: /home/sendtrul/v1.sendtruly.com # Destination directory
+
+      - name: Deployment Status
+        run: echo "✅ Deployment completed successfully!"
