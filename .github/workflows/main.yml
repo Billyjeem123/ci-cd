@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps # Use 'ftp' for plain FTP
           local-dir: ./ # Directory to upload
-          server-dir: /home/sendtrul/v1.sendtruly.com/ # Destination directory
+          server-dir: v1.sendtruly.com/ # Destination directory
 
       - name: Deployment Status
         run: echo "✅ Deployment completed successfully!"
