@@ -28,7 +28,7 @@ jobs:
           host: 51.77.72.43
           username: sendtrul
           password: 1mZs88j@YI(h5Y
-          port: 21 # Added port configuration
+          port: 22 # Added port configuration
           script: |
             echo "📂 Navigating to project directory..."
             cd /home/sendtrul/v1.sendtruly.com
