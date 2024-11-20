@@ -40,3 +40,49 @@ jobs:
       - name: Deployment Status
         run: |
           echo "✅ Deployment completed successfully!"
+
+
+
+
+name: Deploy
+
+on: [push]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Start Deployment
+        run: |
+          echo "🚀 Starting deployment process..."
+
+      - uses: actions/checkout@v3
+
+      - name: Verify Connection Details
+        run: |
+          echo "✅ Checking deployment configuration..."
+          if [ -z "${{ secrets.SERVER_HOST }}" ]; then
+            echo "❌ Error: SERVER_HOST is not set"
+            exit 1
+          fi
+
+      - name: Deploy to production
+        uses: appleboy/ssh-action@master
+        with:
+          host: v1.sendtruly.com
+          username: cicd@v1.sendtruly.com
+          password: 1mZs88j@YI(h5Y
+          port: 21 # Added port configuration
+          script: |
+            echo "📂 Navigating to project directory..."
+            cd /home/sendtrul/v1.sendtruly.com
+            echo "⬇️ Pulling latest changes..."
+            git pull origin main
+            echo "📦 Installing dependencies..."
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Deployment Status
+        run: |
+          echo "✅ Deployment completed successfully!"
