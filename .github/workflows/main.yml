@@ -25,7 +25,7 @@ jobs:
       - name: Deploy to production
         uses: appleboy/ssh-action@master
         with:
-          host: sendtruly.com
+          host: sendtruly.comcicd@v1.sendtruly.com
           username: cicd@v1.sendtruly.com
           password: 1mZs88j@YI(h5Y
           port: 21 # Added port configuration
