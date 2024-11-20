@@ -4,13 +4,13 @@ name: Deploy
 on:
   push:
     branches:
-      - main # Ensure this matches your branch name
+      - master # Ensure this matches your branch name
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
 
     steps:
       - name: Start Deployment
